@@ -8,6 +8,10 @@ export class Order
     tax: string;
     discount: string;
     total: string;
+    avatar: string;
+    company: string;
+    phone: string;
+    email: string;
     date: string;
     customer: any;
     products: any[];
@@ -35,5 +39,9 @@ export class Order
         this.status = order.status || [];
         this.payment = order.payment || {};
         this.shippingDetails = order.shippingDetails || [];
+        this.avatar = order.avatar;
+        this.email = order.email;
+        this.company = order.company;
+        this.phone = order.phone;
     }
 }

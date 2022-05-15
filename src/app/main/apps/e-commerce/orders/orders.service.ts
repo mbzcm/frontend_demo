@@ -54,7 +54,8 @@ export class EcommerceOrdersService implements Resolve<any>
         return new Promise((resolve, reject) => {
             this._httpClient.get('http://localhost:3000/api/orders')
                 .subscribe((response: any) => {
-                    this.orders = response;
+                    console.log('*** response',response);
+                    this.orders = response[0];
                     this.onOrdersChanged.next(this.orders);
                     resolve(response);
                 }, reject);

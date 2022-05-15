@@ -82,20 +82,12 @@ export class EcommerceOrderComponent implements OnInit, OnDestroy
     /**
      * Update status
      */
-    updateStatus(): void
+    updateStatus(order): void
     {
-        const newStatusId = Number.parseInt(this.statusForm.get('newStatus').value);
+        const newStatus = this.statusForm.get('newStatus').value;      
+        const updateOrder = {id: order.id, newStatus : newStatus}
+        this._ecommerceOrderService.updateOrder(updateOrder); 
 
-        if ( !newStatusId )
-        {
-            return;
-        }
-
-        const newStatus = this.orderStatuses.find((status) => {
-            return status.id === newStatusId;
-        });
-
-        newStatus['date'] = new Date().toString();
 
         this.order.status.unshift(newStatus);
     }

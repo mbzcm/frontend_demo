@@ -55,9 +55,9 @@ export class EcommerceOrderService implements Resolve<any>
     getOrder(): Promise<any>
     {
         return new Promise((resolve, reject) => {
-            this._httpClient.get('http://localhost:3000/api/order' + this.routeParams.id)
+            this._httpClient.get('http://localhost:3000/api/order/' + this.routeParams.id)
                 .subscribe((response: any) => {
-                    this.order = response;
+                    this.order = response[0];
                     this.onOrderChanged.next(this.order);
                     resolve(response);
                 }, reject);
@@ -95,4 +95,21 @@ export class EcommerceOrderService implements Resolve<any>
                 }, reject);
         });
     }
+
+
+        /**
+     * Update order
+     *
+     * @param order
+     * @returns {Promise<any>}
+     */
+         updateOrder(order): Promise<any>
+         {
+             return new Promise((resolve, reject) => {
+                 this._httpClient.put('http://localhost:3000/api/order', order)
+                     .subscribe((response: any) => {
+                         resolve(response);
+                     }, reject);
+             });
+         }
 }
